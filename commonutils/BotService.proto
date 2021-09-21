@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package CommonUtils;
+option go_package = "commonutils/";
+
+service PostMessage {
+    rpc SendMessage(MessageRequest) returns (MessageResponse);
+}
+
+message MessageRequest {
+   MetaData metaData = 1;
+    bytes file = 2;
+}
+
+message MetaData {
+    string fileName = 1;
+    string type = 2;
+    int64 size = 3;
+    string lastmodified = 4;
+}
+
+message MessageResponse {
+    string response = 1;
+}

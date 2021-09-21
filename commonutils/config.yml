@@ -1,0 +1,3 @@
+grpcportnum : 39298
+filehostURL : "http://localhost:8080/file/"
+filepath : "/tmp/"
