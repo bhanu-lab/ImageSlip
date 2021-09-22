@@ -2,11 +2,12 @@ package commonutils
 
 import (
 	"bufio"
-	"go.uber.org/zap"
 	"io"
 	"net/http"
 	"os"
 	"strings"
+
+	"go.uber.org/zap"
 )
 
 var Log *zap.SugaredLogger
@@ -75,7 +76,6 @@ func getMetaData(info os.FileInfo) *MetaData {
 	mData := MetaData{}
 	mData.FileName = info.Name()
 	mData.Size = info.Size()
-	mData.Lastmodified = info.ModTime().String()
 
 	Log.Debug("FileName: [%s] FileSize: [%d] FileModifiedTime: [%v] \n", mData.FileName, mData.Size, mData.Lastmodified)
 	return &mData

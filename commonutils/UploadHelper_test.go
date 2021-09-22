@@ -48,7 +48,7 @@ func Test_getMetaData(t *testing.T) {
 		{
 			"test to see if metadata struct is correct",
 			test1,
-			&MetaData{FileName: "generate_protobuf.sh", Size: 117, Lastmodified: "2021-09-19 07:06:32.255420779 +0530 IST"},
+			&MetaData{FileName: "generate_protobuf.sh", Size: 117, Lastmodified: ""},
 		},
 	}
 	for _, tt := range tests {
