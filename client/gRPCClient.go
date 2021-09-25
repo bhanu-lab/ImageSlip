@@ -28,7 +28,7 @@ func main() {
 */
 func SendToServer(req *commonutils.MessageRequest) {
 	serverAddress := ":39298"
-	log.Debug("listening on ",serverAddress)
+	log.Debug("listening on ", serverAddress)
 	conn, e := grpc.Dial(serverAddress, grpc.WithInsecure())
 
 	if e != nil {

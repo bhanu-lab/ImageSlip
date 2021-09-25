@@ -43,7 +43,7 @@ func DownloadFile(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	fileDir := vars["key"]
 	fileName := vars["value"]
-	log.Info("Received file download request for", fileDir,"/", fileName)
+	log.Info("Received file download request for", fileDir, "/", fileName)
 
 	w.Header().Set("Content-Disposition", "attachment; filename="+fileName)
 	w.Header().Set("Content-Type", "Image/png")
