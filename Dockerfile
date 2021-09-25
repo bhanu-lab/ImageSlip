@@ -1,9 +1,6 @@
-FROM golang:1.17.1-alpine3.14
+FROM golang:1.17.1-alpine3.14 as builder
 
 RUN apk add --no-cache git
-
-# Installing required tools
-RUN apk --update add supervisor
 
 # Set the Current Working Directory inside the container
 WORKDIR /app/ImageSlip/
@@ -17,6 +14,21 @@ COPY go.sum .
 RUN go mod download
 
 COPY . .
+
+RUN cd server && go build -o gRPCServer
+
+RUN cd webserver && go build -o webserver
+
+FROM alpine:3.14 as baseImage
+
+# Installing required tools
+RUN apk --update add supervisor
+
+WORKDIR /app/ImageSlip/
+
+COPY --from=builder /app/ImageSlip/server/gRPCServer .
+COPY --from=builder /app/ImageSlip/webserver/webserver .
+COPY --from=builder /app/ImageSlip/supervisor/service_script.conf supervisor/
 
 # This container exposes port 8080 to the outside world
 EXPOSE 8080
